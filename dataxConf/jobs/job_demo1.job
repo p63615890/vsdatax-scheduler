@@ -1,0 +1,67 @@
+######################################################
+#The following items  relate to the configurations of job iteself.
+#作业 id：区分作业的唯一性标识
+job.meta.base.jobid=job_demo1
+#datax系统运行环境的编码，默认utf-8
+job.meta.base.env.encoding=utf-8
+# 作业组名.用于quartz任务调度
+job.meta.base.jobgroupname=job.group1
+
+#作业的定时任务的cron表达式
+job.meta.base.cronexpression=*/6 * * * * ?
+#Datax程序的根路径
+job.meta.base.datax.home=D:/work/java_res/datax/datax_aio
+#包含作业定义的datax job脚本文件
+job.meta.base.job.script=D:/work/projs/incubator/vsetl/vsdatax/scheduler/vsdatax-scheduler/scripts/oracle2stream.json
+#Job的调用方式，有两种类型：进程方式和线程方式
+#invoke way includes two options:process and thread
+job.meta.base.invoke.way=process
+#启动作业的 python命令名。根据作业的宿主机的操作系统进行配置，例如python、python2、python3等
+job.meta.base.invoke.python.cmd=python2
+#Datax提供的运行job的启动脚本。通常是$DATA_HOME/bin/datax.py
+job.meta.base.invoke.datax.script=D:/work/java_res/datax/datax_aio/bin/datax.py
+
+
+#唯一标识Job状态存储信息的主键。
+# 例如：对于采用文件存储 Job Status的实现，key一般采用状态文件的绝对路径名;
+# 对于采用数据库存储Job Status的实现，key可以是用于唯一标识一条记录的主键，这里主键需要配置自动保持
+# 全局唯一性
+job.status.persist.key=d:/tmp/job_demo1.status
+
+
+#############################################
+#自定义的可变配置项。key名需要以job.var开头
+#用于RDBMS的提取开始位置的变量解析器实现
+job.var.impl.begin=vsincr.scheduler.rdbms.var.DbBeginVarResolver
+
+
+#用于RDBMS的提取结束位置的变量解析器实现
+job.var.impl.end=vsincr.scheduler.rdbms.var.DbEndVarResolver
+#RDBMS的数据库连接用户名字
+job.var.conf.db.conn.user=xmuser
+#RDBMS的数据库连接密码
+job.var.conf.db.conn.password=xmuser
+#RDBMS的数据库连接url
+job.var.conf.db.conn.url=jdbc:oracle:thin:@//172.20.240.150:1521/dbsrv2
+#RDBMS的数据库连接的jdbc驱动
+job.var.conf.db.conn.driver=oracle.jdbc.driver.OracleDriver
+###############################################################
+
+################################################################
+#数据库解析程序用到的自定义配置项
+#初始值。第一次抽取时的起始位置
+# 初始值属性的配置优先级顺序:init.val,init.query.
+#job.var.conf.begin.init.val=
+#获取初始值的查询语句
+#The type of the sql's return value must be string
+job.var.conf.begin.init.query=select to_char( (min(jk_jkclsj)-numtodsinterval(1,'second')),'yyyy-mm-dd hh24:mi:ss')  from kh_ydkh
+#状态记录里的上一次结束值的变量名字。默认是__SYS_NOW。
+job.var.conf.begin.lastend.var.name=end
+#获取结束值的查询语句
+#The type of the return value must be string
+job.var.conf.end.query=select  to_char(max(jk_jkclsj),'yyyy-mm-dd hh24:mi:ss')  from kh_ydkh
+
+
+
+
+

@@ -1,0 +1,41 @@
+######################################################
+#The following items  relate to the configurations of job iteself.
+#作业 id：区分作业的唯一性标识
+job.meta.base.jobid=job_demo_only_sysvar
+# 作业组名.用于quartz任务调度
+job.meta.base.jobgroupname=job.group1
+
+#作业的定时任务的cron表达式
+job.meta.base.cronexpression=*/6 * * * * ?
+#Datax程序的根路径
+job.meta.base.datax.home=D:/work/java_res/datax/datax_aio
+#包含作业定义的datax job脚本文件
+job.meta.base.job.script=D:/work/projs/incubator/vsetl/vsdatax/scheduler/vsdatax-scheduler/scripts/oracle2stream_only_sysvar.json
+#Job的调用方式，有两种类型：进程方式和线程方式
+#invoke way includes two options:process and thread
+job.meta.base.invoke.way=process
+#启动作业的 python命令名。根据作业的宿主机的操作系统进行配置，例如python、python2、python3等
+job.meta.base.invoke.python.cmd=python2
+#Datax提供的运行job的启动脚本。通常是$DATA_HOME/bin/datax.py
+job.meta.base.invoke.datax.script=D:/work/java_res/datax/datax_aio/bin/datax.py
+
+#唯一标识Job状态存储信息的主键。
+# 例如：对于采用文件存储 Job Status的实现，key一般采用状态文件的绝对路径名;
+# 对于采用数据库存储Job Status的实现，key可以是用于唯一标识一条记录的主键，这里主键需要配置自动保持
+# 全局唯一性
+job.status.persist.key=d:/tmp/jobIncStatusFile.job1.status
+
+
+#配置规则如下：
+
+#自定义的可变配置项。key名需要以job.var开头。job.var.impl.后面一个串的名字作为datax job里环境变量的变量名.
+例如job.var.impl.begin,那么begin将作为变量名
+#基于状态数据的开始位置提取的变量解析器实现
+job.var.impl.begin=vsincr.variable.impl.LocalBeginVarResolver
+job.var.conf.begin.init.val=1970-01-01 01:01:01
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "xmuser",
+            "password": "xmuser",
+            "where": "",
+            "splitPk": "jk_dabs_id",
+            "connection": [
+              {
+                "querySql": [
+                  "select * from kh_ydkh where jk_jkclsj>to_date('${begin}','yyyy-mm-dd hh24:mi:ss') and jk_jkclsj<=to_date('${end}','yyyy-mm-dd hh24:mi:ss') and  jk_dabs_id<10"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@//172.20.240.150:1521/dbsrv2"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "streamwriter",
+          "parameter": {
+            "encoding": "UTF-8",
+            "print": true
+          }
+        }
+      }
+    ]
+  }
+}

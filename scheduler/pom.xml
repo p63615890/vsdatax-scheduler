@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>scheduler-main</artifactId>
+        <groupId>vsdatax</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>scheduler</artifactId>
+
+    <properties>
+        <quartz.version>2.3.0</quartz.version>
+        <datax.version>3.0</datax.version>
+        <guava.version>27.0.1-jre</guava.version>
+        <version.restexpress>0.11.3</version.restexpress>
+        <datax.lib.dir>D:/work/java_res/datax/datax_aio/lib</datax.lib.dir>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.datax</groupId>
+            <artifactId>datax-common</artifactId>
+            <systemPath>${datax.lib.dir}/datax-common-0.0.1-SNAPSHOT.jar</systemPath>
+            <scope>system</scope>
+
+            <version>${datax.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.datax</groupId>
+            <artifactId>datax-core</artifactId>
+            <version>${datax.version}</version>
+            <systemPath>${datax.lib.dir}/datax-core-0.0.1-SNAPSHOT.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.datax</groupId>
+            <artifactId>datax-transformer</artifactId>
+            <systemPath>${datax.lib.dir}/datax-transformer-0.0.1-SNAPSHOT.jar</systemPath>
+            <scope>system</scope>
+            <version>${datax.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>vsincr</groupId>
+            <artifactId>vsincr-core</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>vsincr</groupId>
+            <artifactId>vsincr-plugin-rdbms</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.18</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.ethz.ganymed</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+            <version>262</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>
