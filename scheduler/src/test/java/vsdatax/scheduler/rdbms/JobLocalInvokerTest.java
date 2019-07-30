@@ -21,7 +21,7 @@ public class JobLocalInvokerTest {
                  jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo_onlytime.job";
 //        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_onlytime_brief.job";
 //        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo_only_sysvar.job";
-//        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo1.job";
+//        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_begin_end_both_in_db.job";
 //         jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo_num_company.job";
 
         EnvInitiator.initEnv();

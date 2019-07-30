@@ -29,7 +29,7 @@ public class JobCreateTest {
         if (scheduler == null) {
             throw new RuntimeException("scheduler should be started first");
         }
-        String metaFile = "D:/work/projs/incubator/vsetl/vsdatax/scheduler/vsdatax-scheduler/dataxConf/jobs/job_demo1.job";
+        String metaFile = "D:/work/projs/incubator/vsetl/vsdatax/scheduler/vsdatax-scheduler/dataxConf/jobs/job_begin_end_both_in_db.job";
         Properties properties = PropertiesCfgUtils.loadProps(metaFile);
         JobConfModel jobConfModel =new JobConfModel();
         jobConfModel.load(PropertiesCfgUtils.prop2Map(properties),0);

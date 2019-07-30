@@ -19,7 +19,7 @@ public class JobManagerTest  {
     @Test
     public void testRemoveJob() {
         IJobManager jobManager =new DataxJobManager();
-        jobManager.removeJob(scheduler,"job_demo1","job.group1");
+        jobManager.removeJob(scheduler,"job_begin_end_both_in_db","job.group1");
         jobManager.removeJob(scheduler,"job_demo_num","job.group1");
         jobManager.removeJob(scheduler,"job_demo_num_company","job.group1");
         jobManager.removeJob(scheduler,"job_demo_onlytime","job.group1");
