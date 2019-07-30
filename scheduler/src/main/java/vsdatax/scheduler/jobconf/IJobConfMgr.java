@@ -8,7 +8,7 @@ import java.util.Collection;
  */
 public interface IJobConfMgr {
 
-    public void init(String confDir,String encoding);
+    public void init();
 
     public Collection<JobConfModel> listJobConfs();
 

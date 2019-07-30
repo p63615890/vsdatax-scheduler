@@ -1,6 +1,7 @@
 package vsdatax.scheduler.env;
 
 import vscommons.vsutils.config.ResourceConfig;
+import vscommons.vsutils.io.IOUtils;
 
 /**
  * @author JerryHuang
@@ -10,7 +11,9 @@ public class AppCfgFactory {
     static ResourceConfig resourceConfig= null;
     public static void init(String appCfg){
         resourceConfig=new ResourceConfig(appCfg);
+
     }
+
 
     public static ResourceConfig getCfg(){
         return resourceConfig;

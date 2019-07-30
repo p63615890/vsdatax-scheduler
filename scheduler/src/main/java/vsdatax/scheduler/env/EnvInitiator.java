@@ -21,11 +21,10 @@ import vsincr.utils.EnvUtils;
 public class EnvInitiator {
 
     public static void initEnv() {
-        String workRoot = System.getProperty("vsapp.workdir");
+        String workRoot = System.getProperty(EnvConstants.ENV_NAME_WORKDIR);
         WorkEnvHelper.init(workRoot);
+
         PropertyConfigurator.configure(WorkEnvHelper.getLogCfgFile());
-
-
         AppCfgFactory.init(WorkEnvHelper.getAppConf());
 
         if (AppCfgFactory.getCfg().getBoolean("scheduler.jdbc.enable")) {
@@ -38,7 +37,7 @@ public class EnvInitiator {
 
 
         IJobConfMgr jobConfMgr = BcmFactory.getInstance().getBean("jobConfMgr", IJobConfMgr.class);
-        jobConfMgr.init(WorkEnvHelper.getJobConfDir(), EnvUtils.getFileEncoding());
+        jobConfMgr.init();
         IJobLifeCycleService jobLifeCycleService=  BcmFactory.getInstance().getBean("jobLifeCycleService",IJobLifeCycleService.class);
         IJobStatusMgr jobStatusMgr=BcmFactory.getInstance().getBean("jobStatusMgr",IJobStatusMgr.class);
         IJobManager jobManager= BcmFactory.getInstance().getBean("jobManager",IJobManager.class);

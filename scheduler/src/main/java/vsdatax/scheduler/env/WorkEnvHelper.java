@@ -17,6 +17,7 @@ public class WorkEnvHelper {
 
     public static void init(String pRootPath) {
         rootPath = pRootPath;
+        rootPath=rootPath.replaceAll("\\\\","\\/");
     }
 
     public static String getRootPath() {
@@ -24,9 +25,7 @@ public class WorkEnvHelper {
         return rootPath;
     }
 
-    public static String getJobConfDir() {
-        return IOUtils.composeFile(rootPath, "jobs");
-    }
+
 
     public static String getQuartzFile() {
         return IOUtils.composeFile(rootPath, "quartz.properties");

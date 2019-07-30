@@ -5,6 +5,10 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import vscommons.vsutils.io.IOUtils;
 import vscommons.vsutils.io.PropertiesCfgUtils;
+import vscommons.vsutils.str.VsStringUtils;
+import vsdatax.scheduler.env.AppCfgFactory;
+import vsdatax.scheduler.env.EnvConstants;
+import vsdatax.scheduler.env.WorkEnvHelper;
 import vsdatax.scheduler.job.JobConstants;
 import vsincr.utils.EnvUtils;
 
@@ -13,6 +17,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 基于文件存储的Job的配置管理程序。
@@ -23,14 +29,14 @@ import java.util.Properties;
  */
 public class FileBasedJobConfMgr implements IJobConfMgr {
     private String confDir = null;
-    private String encoding=null;
+    private String encoding = null;
     private Map<String, JobConfModel> jobConfs = new LinkedTreeMap<>();
 
 
     @Override
-    public void init(String confDir,String encoding) {
-        this.confDir = confDir;
-        this.encoding=encoding;
+    public void init() {
+        encoding = EnvUtils.getFileEncoding();
+        confDir = initConfDir();
         Collection<File> confFiles = FileUtils.listFiles(new File(this.confDir), FileFilterUtils.suffixFileFilter(JobConstants.JOBCONF_FILE_SUFFIX), null);
 
         Map<String, String> jobConf = null;
@@ -46,6 +52,23 @@ public class FileBasedJobConfMgr implements IJobConfMgr {
             jobConfModel.setLastModified(lastModified);
             jobConfs.put(jobId, jobConfModel);
         }
+    }
+
+    private String initConfDir() {
+        String confDir = AppCfgFactory.getCfg().getProperty("incr.job.conf.dir");
+        if (VsStringUtils.isEmpty(confDir)) {
+            //Use default configuration
+            confDir = IOUtils.composeFile(WorkEnvHelper.getRootPath(), "jobs");
+        } else {
+            String regex="\\$\\{("+EnvConstants.ENV_NAME_WORKDIR+")\\}";
+            confDir=confDir.replaceAll(regex, WorkEnvHelper.getRootPath());
+
+            if (VsStringUtils.isEmpty(confDir)) {
+                throw new JobConfException("The value of [incr.job.conf.dir] should be configurated correctly!");
+            }
+        }
+
+        return confDir;
     }
 
     private Map<String, String> extractJobConf(File confFile) {
@@ -77,18 +100,18 @@ public class FileBasedJobConfMgr implements IJobConfMgr {
 
     @Override
     public void updateJobConf(JobConfModel jobConfModel) {
-        //Use File create or update time as lastModified time,so do nothing to handle file time
+        //Use create or update time  of job files as lastModified time
         createOrUpdateJobConf(jobConfModel);
     }
 
     @Override
     public void addJobConf(JobConfModel jobConfModel) {
         //Use File create or update time as lastModified time,so do nothing to handle file time
-       createOrUpdateJobConf(jobConfModel);
+        createOrUpdateJobConf(jobConfModel);
     }
 
     @Override
-    public  void createOrUpdateJobConf(JobConfModel jobConfModel){
+    public void createOrUpdateJobConf(JobConfModel jobConfModel) {
         File confFile = new File(makeJobConfFileName(jobConfModel.getJobId()));
         try {
             FileUtils.write(confFile, map2PropString(jobConfModel.getJobConfParams()), this.encoding, false);
@@ -98,8 +121,9 @@ public class FileBasedJobConfMgr implements IJobConfMgr {
             throw exception;
         }
     }
+
     private String makeJobConfFileName(String jobId) {
-        return IOUtils.composeFile(confDir,jobId + ".job");
+        return IOUtils.composeFile(confDir, jobId + ".job");
     }
 
 

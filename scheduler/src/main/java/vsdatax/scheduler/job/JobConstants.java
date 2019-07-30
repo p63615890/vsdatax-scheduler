@@ -9,4 +9,6 @@ public class JobConstants {
     public final static String INVOKE_WAY_SSH="ssh";
 
     public final static String JOBCONF_FILE_SUFFIX = "job";
+
+
 }
