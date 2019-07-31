@@ -1,0 +1,40 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+
+          "parameter": {
+            "username": "root",
+            "password": "longshine",
+            "column": ["*"],
+            "where": " id >${begin} and id<=${end}",
+            "connection": [
+              {
+                "table": [
+                  "t_book"
+                ],
+                "jdbcUrl": [
+                  "jdbc:mysql://mydev:3306/hyt_demo?useUnicode=true"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "streamwriter",
+          "parameter": {
+            "encoding": "UTF-8",
+            "print": true
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-package vsdatax.scheduler.rdbms;
+package vsdatax.scheduler.job;
 
 import vscommons.vsutils.io.PropertiesCfgUtils;
 import vsdatax.scheduler.context.JobContexHelper;
@@ -19,6 +19,7 @@ public class JobLocalInvokerTest {
         String jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo_num.job";
 //        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo_ssh.job";
                  jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo_onlytime.job";
+                 jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs_pub_demo\\job_book_num_demo.job";
 //        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_onlytime_brief.job";
 //        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_demo_only_sysvar.job";
 //        jobConfFile = "D:\\work\\projs\\incubator\\vsetl\\vsdatax\\scheduler\\vsdatax-scheduler\\dataxConf\\jobs\\job_begin_end_both_in_db.job";
